@@ -5,6 +5,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const connectDB = require('./db/connect');
+const fileUpload = require('express-fileupload');
 
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
@@ -18,6 +19,9 @@ const app = express();
 app.use(morgan('tiny'));
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
+
+app.use(express.static('./public'));
+app.use(fileUpload());
 
 app.get('/', (req, res) => {
   res.send('<h1>e-commerce api</h1>');
