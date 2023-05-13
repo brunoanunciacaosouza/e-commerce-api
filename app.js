@@ -23,8 +23,6 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
 
 const app = express();
 
-app.use(morgan('tiny'));
-
 app.set('trust proxy', 1);
 app.use(
   rateLimiter({
